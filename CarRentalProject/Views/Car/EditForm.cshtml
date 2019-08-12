@@ -1,0 +1,64 @@
+﻿@model CarRentalProject.ViewModel.SingleCarViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section CustomerPage {
+    <link href="~/Content/homebg.css" rel="stylesheet" />
+}
+
+<br />
+
+<div class="container">
+
+    <h2 style="color:white; font-family:'Times New Roman', Times, serif">Edit Car</h2>
+
+    <div style="color:white; background: rgba(0, 0, 0,0.5); width:350px; padding:20px;">
+
+        @using (Html.BeginForm("Edit", "Car", Model.Car))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Car.VIN)
+                @Html.TextBoxFor(m => m.Car.VIN, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Car.VIN)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Car.Make)
+                @Html.TextBoxFor(m => m.Car.Make, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Car.Make)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Car.Model)
+                @Html.TextBoxFor(m => m.Car.Model, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Car.Model)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Car.Color)
+                @Html.TextBoxFor(m => m.Car.Color, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Car.Color)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Car.Year)
+                @Html.TextBoxFor(m => m.Car.Year, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Car.Year)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Car.Style)
+                @Html.TextBoxFor(m => m.Car.Style, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Car.Style)
+            </div>
+
+            @Html.HiddenFor(m => m.Car.Id)
+            @Html.HiddenFor(m => m.Car.UserId)
+            <button class="btn btn-primary" type="submit">Save</button>
+            @Html.ActionLink("Back", "CustAndCarForm", "Customer", Model.ApplicationUser, new { @class = "btn btn-primary", @style = "color: white; text-decoration:none" })
+
+        }
+
+    </div>
+</div>

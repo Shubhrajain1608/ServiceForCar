@@ -1,0 +1,66 @@
+﻿@model CarRentalProject.ViewModel.NewCustomerViewModel
+@{
+    ViewBag.Title = "CustAndCarForm";
+}
+
+@section custandcarpage {
+    <link href="@Url.Content("~/Content/cust&carImage.css")" rel="stylesheet" />
+}
+
+<br />
+
+<div class="container">
+    <h2 style="color:white; font-family:'Times New Roman', Times, serif">Car Records for Customer</h2>
+
+    @Html.ActionLink("Add Car", "CarForm", "Car", Model.ApplicationUser, new { @class = "btn btn-primary", @style = "color: white; text-decoration:none" })
+
+    <div>
+        <br />
+        <table class="table table-hover" style="background:rgba(240, 248, 255, 0.8); font-family:'Times New Roman', Times, serif">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+            </tr>
+            <tr>
+                <td>@Model.ApplicationUser.FirstName</td>
+                <td>@Model.ApplicationUser.LastName</td>
+                <td>@Model.ApplicationUser.PhoneNumber</td>
+                <td>@Model.ApplicationUser.Email</td>
+            </tr>
+        </table>
+        <br />
+        <br />
+    </div>
+
+    <table class="table table-hover" style="background:rgba(240, 248, 255, 0.8); font-family:'Times New Roman', Times, serif">
+        <tr>
+            <th>VIN</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Style</th>
+            <th>Color</th>
+            <th></th>
+        </tr>
+        @foreach (var c in Model.Cars)
+        {
+            if (c.UserId == Model.ApplicationUser.Id)
+            {
+                <tr>
+                    <td>@c.VIN</td>
+                    <td>@c.Make</td>
+                    <td>@c.Model</td>
+                    <td>@c.Style</td>
+                    <td>@c.Color</td>
+                    <td class="col-md-4">
+                        @Html.ActionLink("View Services", "AddNewServices", "Car", c, new { @class = "btn btn-primary", @style = "color: white; text-decoration:none" })
+                        @Html.ActionLink(" ", "EditForm", "Car", c, new { @class = "btn btn-success fa fa-edit", @style = "color: white; text-decoration:none" })
+                        @Html.ActionLink(" ", "Delete", "Car", c, new { @class = "btn btn-danger fa fa-trash-o", @style = "color: white; text-decoration:none" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>

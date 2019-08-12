@@ -1,0 +1,101 @@
+﻿@model CarRentalProject.ViewModel.SearchBarViewModel
+@using Microsoft.AspNet.Identity;
+@*model IEnumerable<CarRentalProject.Models.ApplicationUser>*@
+@{
+    ViewBag.Title = "Index";
+}
+
+@section CustomerPage {
+    <link href="~/Content/homebg.css" rel="stylesheet" />
+}
+
+<br />
+
+<div class="container">
+    <div style=" width:150px">
+        <h2 style="color:white; font-family:'Times New Roman', Times, serif">Customers</h2>
+    </div>
+
+    @*@Html.ActionLink("Create New Customer","CustForm", null, new { @class = "btn btn-primary", @style = "color: white; text-decoration:none" })*@
+
+    <div style="float:right; color:white; font-family:'Times New Roman', Times, serif">
+        @using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+        {
+            <p>
+                Search By:
+                @Html.RadioButton("option", "First name")Name
+                @Html.RadioButton("option", "Email")Email
+                @Html.RadioButton("option", "PhoneNumber")Phone Number
+            </p>
+
+            <p>
+                @*@Html.TextBox("Search")*@
+                @*<button class="btn btn-primary" type="submit">Search</button>*@
+
+                @*<button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                    </button>*@
+            </p>
+
+            <p>
+                @Html.TextBox("Search")
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </p>
+        }
+        <br />
+        <br />
+        <br />
+    </div>
+</div>
+
+
+@if (Model.CheckInteger == 1)
+    {
+        <h2 style="color:white; font-family:'Times New Roman', Times, serif">Invaild Input</h2>
+    }
+
+else if (!Model.ApplicationUsers.Any())
+    {
+        <h2 style="color:white; font-family:'Times New Roman', Times, serif">No Customer Found</h2>
+    }
+
+else
+    {
+    <div class="container">
+        <table class="table table-hover" style="background:rgba(240, 248, 255, 0.8); font-family:'Times New Roman', Times, serif">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>City</th>
+                <th></th>
+            </tr>
+            @foreach (var c in Model.ApplicationUsers)
+            {
+                if (User.Identity.GetUserId() == c.Id)
+                {
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@c.FirstName</td>
+                        <td>@c.LastName</td>
+                        <td>@c.PhoneNumber</td>
+                        <td>@c.Email</td>
+                        <td>@c.City</td>
+                        <td class="col-md-3">
+                            @Html.ActionLink(" ", "CustAndCarForm", c, new { @class = "btn btn-primary fa fa-car", @style = "color: white" })
+                            @Html.ActionLink(" ", "Edit","Customer", c, new { @class = "btn btn-success fa fa-edit", style = "color: white" })
+                            @Html.ActionLink(" ", "Delete", c, new { @class = "btn btn-danger fa fa-trash-o", @style = "color: white" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+}
+

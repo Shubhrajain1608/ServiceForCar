@@ -1,0 +1,85 @@
+﻿@model CarRentalProject.ViewModel.SingleCarViewModel
+@{
+                /**/
+
+                ViewBag.Title = "AddService";
+}
+
+<h2>AddService</h2>
+
+@using (Html.BeginForm("AddService", "Car"))
+{
+    <div class="jumbotron">
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td> @Html.LabelFor(m => m.Car.Make)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Make, new { @class = "form-control" })</td>
+                    <td> </td>
+                    <td> @Html.LabelFor(m => m.Car.Style)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Style, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td> @Html.LabelFor(m => m.Car.Model)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Model, new { @class = "form-control" })</td>
+                    <td> </td>
+                    <td> @Html.LabelFor(m => m.Car.Year)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Year, new { @class = "form-control" })</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td> @Html.LabelFor(m => m.Car.Make)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Make, new { @class = "form-control" })</td>
+                    <td> </td>
+                    <td> @Html.LabelFor(m => m.Car.Style)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Style, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td> @Html.LabelFor(m => m.Car.Model)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Model, new { @class = "form-control" })</td>
+                    <td> </td>
+                    <td> @Html.LabelFor(m => m.Car.Year)</td>
+                    <td>   @Html.TextBoxFor(m => m.Car.Year, new { @class = "form-control" })</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    @*<div class="form-group">
+                @Html.LabelFor(m => m.Make)
+                @Html.TextBoxFor(m => m.Make, new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Model)
+                @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Color)
+                @Html.TextBoxFor(m => m.Color, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Year)
+                @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Style)
+                @Html.TextBoxFor(m => m.Style, new { @class = "form-control" })
+            </div>
+
+            @Html.HiddenFor(m => m.Id)
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" type="button">@Html.ActionLink("Back", "CustAndCarForm", null, new { @style = "color: white; text-decoration:none" })</button>
+            </table>
+        }*@

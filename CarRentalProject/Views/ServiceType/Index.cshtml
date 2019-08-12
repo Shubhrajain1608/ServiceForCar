@@ -1,0 +1,68 @@
+﻿@model CarRentalProject.ViewModel.ServiceTypeViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@section ServiceTypePage {
+<link href="@Url.Content("~/Content/ServiceTypeBgImage.css")" rel="stylesheet" />
+}
+
+<br />
+
+<div class="container">
+    <div>
+        <h2 style="color:white; font-family:'Times New Roman', Times, serif">Services</h2>
+    </div>
+    <div>
+
+        @using (Html.BeginForm("AddNewService", "ServiceType"))
+        {
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.ServiceType.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ServiceType.Name)
+                <br />
+                <button class="btn btn-primary" type="submit">Add Service</button>
+            </div>
+        }
+    </div>
+    <br />
+    <div style="overflow-y: scroll; height:300px;">
+        <table id="services" class="table table-hover" style="background:rgba(240, 248, 255, 0.8); font-family:'Times New Roman', Times, serif">
+            <tr>
+                <th>Services</th>
+                <th></th>
+            </tr>
+
+            @foreach (var c in Model.ServiceTypes)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    @*<td><button data-ServiceType-id="@c.Id" type="button" class="btn btn-danger jq-delete">Delete</button></td>*@
+
+                    <td>@Html.ActionLink(" ", "Delete", new { c.Id }, new { @class = "btn btn-danger fa fa-trash-o", @style = "color: black" })</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@*@section scripts
+    {
+        <script>
+            $(document).ready(function () {
+                $('#services .jq-delete').on('click', function () {
+                    var button= $(this)
+                    if (confirm('Are you sure you want to delete this customer?')) {
+                        $.ajax({
+                            url: '/api/ServiceTypes/' + $(this).attr('data-ServiceType-id'),
+                            method: 'DELETE',
+                            success: function () {
+                                button.parents('tr').remove()
+
+                            }
+                        })
+                    }
+                })
+            })
+        </script>
+    }*@

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <title>@ViewBag.Title - Car Rental Application</title>
+    <style>
+       #three{
+          color:cornflowerblue;
+            font-size:larger;
+        }
+    </style>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("CustomerPage", required: false)
+    @RenderSection("ServiceTypePage", required: false)
+    @RenderSection("CustAndCarPage", required: false)
+    @RenderSection("ServicePage", required: false)
+    @RenderSection("HomePage", required: false)
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="height:80px; background:rgba(0, 0, 0, 1)">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action( "Index", "Home")">
+                    <img src="~/Images/CarLogo.png" style="width:180px; height:80px; float:left">
+                </a>
+
+                @*@Html.ActionLink("K&K AUTO SERVICE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+                    {
+                                <li id="three">@Html.ActionLink("Customer", "Index", "Customer")</li>
+                                <li id="three">@Html.ActionLink("Service", "Index", "ServiceType")</li>
+                    }
+                    else if(ViewContext.HttpContext.User.IsInRole("user"))
+                    {
+                                <li id="three">@Html.ActionLink("Your Details", "CustAndCarForm1", "Customer")</li>
+                    }
+                    else
+                    {
+                        <li id="three">@Html.ActionLink("About Us", "Index", "Home")</li>
+                        <li id="three">@Html.ActionLink("Contact Us", "Index", "Home")</li>
+
+                    }
+
+                    
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        @*<hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Car Service Rental Application</p>
+        </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
