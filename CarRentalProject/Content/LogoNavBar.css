@@ -1,0 +1,12 @@
+﻿.logoNavBar
+{
+    background-image: url('../Images/CarLogo.PNG');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.logoNavBar:hover {
+    background-image: url('../Images/CarLogo1.PNG');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
